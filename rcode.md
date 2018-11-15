@@ -4,7 +4,7 @@ author: "Umesh"
 date: "11/11/2018"
 output: html_document
 ---
-##Importing Data and tidying
+## Importing Data and tidying
 ```{r}
 library(tidyverse)
 library(lubridate)
@@ -27,7 +27,7 @@ df1$Sub_metering_2 <- as.numeric(as.character(df1$Sub_metering_2))
 df1$Sub_metering_3 <- as.numeric(as.character(df1$Sub_metering_3))
 ```
 
-##Plot 1 
+## Plot 1 
 
 ```{r}
 
@@ -40,7 +40,7 @@ dev.off()
 
 ```
 
-##Plot 2
+## Plot 2
 
 ```{r}
 plot2 <- plot(df1$dttm, df1$Global_active_power,
@@ -53,7 +53,7 @@ dev.off()
 
 ```
 
-##Plot 3 
+## Plot 3 
 
 ``` {r}
 plot3 <- plot(df1$dttm, df1$Sub_metering_1, type="l", col="black",
@@ -69,7 +69,7 @@ dev.copy(png, filename = 'plot3.png')
 dev.off()
 
 ```
-### Plot 4
+## Plot 4
 
 ``` {r}
 
