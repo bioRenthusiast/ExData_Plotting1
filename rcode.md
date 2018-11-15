@@ -1,10 +1,10 @@
 ---
 title: "Expl_Data_Analysis_Assignment_week1"
 author: "Umesh"
-date: "11/11/2018"
+date: "11/14/2018"
 output: html_document
 ---
-## Importing Data and tidying
+# Importing Data and tidying
 ```{r}
 library(tidyverse)
 library(lubridate)
@@ -27,9 +27,11 @@ df1$Sub_metering_2 <- as.numeric(as.character(df1$Sub_metering_2))
 df1$Sub_metering_3 <- as.numeric(as.character(df1$Sub_metering_3))
 ```
 
-## Plot 1 
+# Plot 1 
 
 ```{r}
+par(mfrow=c(1,1))
+
 
 plot1 <- hist(df1$Global_active_power, main = "Global Active Power",
               xlab = "Global Active Power (KilloWats)", 
@@ -40,9 +42,11 @@ dev.off()
 
 ```
 
-## Plot 2
+# Plot 2
 
 ```{r}
+par(mfrow=c(1,1))
+
 plot2 <- plot(df1$dttm, df1$Global_active_power,
               type="l",
               xlab="",
@@ -53,9 +57,11 @@ dev.off()
 
 ```
 
-## Plot 3 
+# Plot 3 
 
 ``` {r}
+par(mfrow=c(1,1))
+
 plot3 <- plot(df1$dttm, df1$Sub_metering_1, type="l", col="black",
               xlab="", ylab="Energy sub metering")
 lines(df1$dttm, df1$Sub_metering_2, col="red")
@@ -69,25 +75,26 @@ dev.copy(png, filename = 'plot3.png')
 dev.off()
 
 ```
-## Plot 4
+# Plot 4
 
 ``` {r}
 
 par(mfrow = c(2,2))
+#1
 plot(df1$dttm, df1$Global_active_power,
      type="l",
      xlab="",
      ylab="Global Active Power")
-# 2
+#2
 plot(df1$dttm, df1$Voltage, type="l",
      xlab="datetime", ylab="Voltage")
-# 3
+#3
 plot(df1$dttm,df1$Sub_metering_1, type="l", 
      xlab="", ylab="Energy sub metering")
 lines(df1$dttm,df1$Sub_metering_2,col="red")
 lines(df1$dttm,df1$Sub_metering_3,col="blue")
 legend("topright", col=c("black","red","blue"), c("Sub_metering_1  ","Sub_metering_2  ", "Sub_metering_3  "),lty=c(1,1), bty="n", cex=.5)
-# 4
+#4
 plot(df1$dttm,df1$Global_reactive_power, type="l", xlab="datetime", ylab="Global_reactive_power")
 
 dev.copy(png, filename = 'plot4.png')
