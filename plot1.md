@@ -1,9 +1,3 @@
----
-title: "Expl_Data_Analysis_Assignment_week1"
-author: "Umesh"
-date: "11/14/2018"
-output: html_document
----
 # Importing Data and tidying
 ```{r}
 library(tidyverse)
