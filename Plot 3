@@ -1,0 +1,41 @@
+# Importing Data and tidying
+```{r}
+library(tidyverse)
+library(lubridate)
+#Import Data
+df <- read.table("household_power_consumption.txt", 
+                 sep =";", header = TRUE, dec =".")
+##Convert to Date and Time format and Combine date and time
+df$Date <- dmy(df$Date)
+df$dttm <- as.POSIXct(paste(df$Date, df$Time), format="%Y-%m-%d %H:%M:%S")
+
+df1<- df%>%
+        filter(Date >= "2007-02-01" & Date <=  "2007-02-02")
+
+###Changing the class of variables
+df1$Global_active_power <- as.numeric(as.character(df1$Global_active_power))
+df1$Global_reactive_power <- as.numeric(as.character(df1$Global_reactive_power))
+df1$Voltage <- as.numeric(as.character(df1$Voltage))
+df1$Sub_metering_1 <- as.numeric(as.character(df1$Sub_metering_1))
+df1$Sub_metering_2 <- as.numeric(as.character(df1$Sub_metering_2))
+df1$Sub_metering_3 <- as.numeric(as.character(df1$Sub_metering_3))
+```
+
+# Plot 3 
+
+``` {r}
+par(mfrow=c(1,1))
+
+plot3 <- plot(df1$dttm, df1$Sub_metering_1, type="l", col="black",
+              xlab="", ylab="Energy sub metering")
+lines(df1$dttm, df1$Sub_metering_2, col="red")
+lines(df1$dttm, df1$Sub_metering_3, col="blue")
+legend("topright",
+       col=c("black", "red", "blue"),
+       c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
+       lty=1)
+print(plot3)
+dev.copy(png, filename = 'plot3.png')
+dev.off()
+
+```
